@@ -1,6 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {IntlProvider} from 'react-intl';
+import JobsList from "./components/jobslist.js";
+import localeEsMessages from "./locales/es.json";
 
-import JobsList from "./components/jobslist";
+const userLocale = window.navigator.language  
 
-ReactDOM.render(<JobsList />, document.getElementById("root"));
+var m;
+
+if (userLocale === 'es') {
+  m = localeEsMessages;
+} 
+
+
+ReactDOM.render(
+  <IntlProvider locale={userLocale} messages={m}>
+    <JobsList />
+  </IntlProvider>,
+  document.getElementById('root')
+);
